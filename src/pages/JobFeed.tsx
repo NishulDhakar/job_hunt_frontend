@@ -3,7 +3,7 @@ import { api, type Job } from '@/lib/api'
 import { JobCard } from '@/components/JobCard'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Search, Filter, Loader2, RefreshCw } from 'lucide-react'
+import { Search, Filter, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 

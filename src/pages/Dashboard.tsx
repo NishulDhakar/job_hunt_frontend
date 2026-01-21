@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { api, type Job, type Application } from '@/lib/api'
+import { api, type Job } from '@/lib/api'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Briefcase, TrendingUp, Star, Calendar } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -14,14 +14,13 @@ export function Dashboard() {
         latestApplication: null as string | null
     })
     const [recentJobs, setRecentJobs] = useState<Job[]>([])
-    const [loading, setLoading] = useState(true)
+
 
     useEffect(() => {
         loadDashboard()
     }, [])
 
     const loadDashboard = async () => {
-        setLoading(true)
         try {
             const [jobs, applications] = await Promise.all([
                 api.getJobs(),
@@ -40,8 +39,6 @@ export function Dashboard() {
             setRecentJobs(jobs.slice(0, 4))
         } catch (error) {
             console.error('Failed to load dashboard:', error)
-        } finally {
-            setLoading(false)
         }
     }
 

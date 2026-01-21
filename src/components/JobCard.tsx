@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import {
-    ChevronDown, ChevronUp, MapPin, Building2, Clock,
+    MapPin, Building2, Clock,
     ExternalLink, Bookmark, Share2, DollarSign, Briefcase
 } from "lucide-react"
 import { useState } from "react"

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { api } from '@/lib/api'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Bot, Send, User, Sparkles } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
@@ -87,8 +87,8 @@ export function AIChat() {
                             >
                                 <div
                                     className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user'
-                                            ? 'bg-primary text-primary-foreground'
-                                            : 'bg-gradient-to-br from-blue-500 to-purple-600 text-white'
+                                        ? 'bg-primary text-primary-foreground'
+                                        : 'bg-gradient-to-br from-blue-500 to-purple-600 text-white'
                                         }`}
                                 >
                                     {msg.role === 'user' ? (
@@ -99,8 +99,8 @@ export function AIChat() {
                                 </div>
                                 <div
                                     className={`rounded-2xl px-5 py-3 max-w-[80%] shadow-sm ${msg.role === 'user'
-                                            ? 'bg-primary text-primary-foreground'
-                                            : 'bg-muted border'
+                                        ? 'bg-primary text-primary-foreground'
+                                        : 'bg-muted border'
                                         }`}
                                 >
                                     <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.content}</p>
