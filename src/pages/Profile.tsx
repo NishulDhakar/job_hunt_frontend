@@ -170,7 +170,7 @@ export function Profile() {
                                     </>
                                 ) : (
                                     <>
-                                        <Sparkles className="w-4 h-4 mr-2" />
+                                        {/* <Sparkles className="w-4 h-4 mr-2" /> */}
                                         Score Jobs
                                     </>
                                 )}

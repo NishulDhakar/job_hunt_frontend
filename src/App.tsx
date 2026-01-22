@@ -6,14 +6,18 @@ import { BestMatches } from '@/pages/BestMatches'
 import { AIChat } from '@/pages/AIChat'
 import { Profile } from '@/pages/Profile'
 import { Dashboard } from '@/pages/Dashboard'
+import { Bookmarked } from '@/pages/Bookmarked'
+import Home from './pages/Home'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/jobs" element={<JobFeed />} />
+          <Route path="/bookmarked" element={<Bookmarked />} />
           <Route path="/applications" element={<Applications />} />
           <Route path="/matches" element={<BestMatches />} />
           <Route path="/chat" element={<AIChat />} />

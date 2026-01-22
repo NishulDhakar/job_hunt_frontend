@@ -33,8 +33,20 @@ export function JobFeed() {
 
         try {
             const data = await api.getJobs()
-            setJobs(data)
-            setFilteredJobs(data)
+            // Sort by Date (Newest First)
+            const sortedData = data.sort((a, b) => {
+                let timeA = new Date(a.datePosted).getTime()
+                let timeB = new Date(b.datePosted).getTime()
+
+                // Treat invalid dates (e.g. 'Recently') as NOW so they show up first
+                if (isNaN(timeA)) timeA = Date.now()
+                if (isNaN(timeB)) timeB = Date.now()
+
+                return timeB - timeA // Descending (Newest first)
+            })
+
+            setJobs(sortedData)
+            setFilteredJobs(sortedData)
         } catch (error) {
             console.error('Failed to load jobs:', error)
         } finally {

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { api } from '@/lib/api'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -20,6 +20,15 @@ export function AIChat() {
     ])
     const [input, setInput] = useState('')
     const [loading, setLoading] = useState(false)
+    const messagesEndRef = useRef<HTMLDivElement>(null)
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
+
+    useEffect(() => {
+        scrollToBottom()
+    }, [messages, loading])
 
     const handleSend = async () => {
         if (!input.trim() || loading) return
@@ -70,9 +79,9 @@ export function AIChat() {
             <Card className="h-[calc(100%-5rem)] flex flex-col shadow-lg">
                 <CardHeader className="border-b bg-gradient-to-r from-primary/5 to-primary/10">
                     <CardTitle className="flex items-center gap-2 text-lg">
-                        <div className="p-2 bg-primary/10 rounded-full">
+                        {/* <div className="p-2 bg-primary/10 rounded-full">
                             <Sparkles className="w-5 h-5 text-primary" />
-                        </div>
+                        </div> */}
                         AI-Powered Career Assistant
                     </CardTitle>
                 </CardHeader>
@@ -88,7 +97,7 @@ export function AIChat() {
                                 <div
                                     className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user'
                                         ? 'bg-primary text-primary-foreground'
-                                        : 'bg-gradient-to-br from-blue-500 to-purple-600 text-white'
+                                        : 'bg-primary text-primary-foreground'
                                         }`}
                                 >
                                     {msg.role === 'user' ? (
@@ -109,7 +118,7 @@ export function AIChat() {
                         ))}
                         {loading && (
                             <div className="flex gap-3">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                                     <Bot className="w-5 h-5 text-white" />
                                 </div>
                                 <div className="rounded-2xl px-5 py-3 bg-muted border">

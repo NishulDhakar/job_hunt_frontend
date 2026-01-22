@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { LayoutDashboard, Briefcase, Star, MessageSquare } from 'lucide-react'
+import { LayoutDashboard, Briefcase, Star, MessageSquare, Bookmark } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -7,8 +7,9 @@ export function Sidebar({ className }: { className?: string }) {
     const location = useLocation()
 
     const links = [
-        { href: '/', label: 'Dashboard', icon: LayoutDashboard },
+        { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/jobs', label: 'Job Feed', icon: Briefcase },
+        { href: '/bookmarked', label: 'Saved Jobs', icon: Bookmark },
         { href: '/matches', label: 'Best Matches', icon: Star },
         { href: '/applications', label: 'Applications', icon: Briefcase },
         { href: '/chat', label: 'AI Assistant', icon: MessageSquare },

@@ -5,19 +5,63 @@ import {
     MapPin, Building2, Clock,
     ExternalLink, Bookmark, Share2, DollarSign, Briefcase
 } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { type Job, api } from "@/lib/api"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 interface JobCardProps {
     job: Job
+    onBookmarkChange?: () => void
 }
 
-export function JobCard({ job }: JobCardProps) {
+export function JobCard({ job, onBookmarkChange }: JobCardProps) {
     const [expanded, setExpanded] = useState(false)
     const [applied, setApplied] = useState(false)
     const [bookmarked, setBookmarked] = useState(false)
     const [openApply, setOpenApply] = useState(false)
+
+    // Check if job is already bookmarked on mount
+    useEffect(() => {
+        const checkBookmarkStatus = () => {
+            try {
+                const stored = localStorage.getItem('bookmarkedJobs')
+                if (stored) {
+                    const bookmarkedJobs = JSON.parse(stored)
+                    const isBookmarked = bookmarkedJobs.some((j: Job) => j.id === job.id)
+                    setBookmarked(isBookmarked)
+                }
+            } catch (error) {
+                console.error('Failed to check bookmark status:', error)
+            }
+        }
+        checkBookmarkStatus()
+    }, [job.id])
+
+    const toggleBookmark = () => {
+        try {
+            const stored = localStorage.getItem('bookmarkedJobs')
+            let bookmarkedJobs: Job[] = stored ? JSON.parse(stored) : []
+
+            if (bookmarked) {
+                // Remove from bookmarks
+                bookmarkedJobs = bookmarkedJobs.filter(j => j.id !== job.id)
+                setBookmarked(false)
+            } else {
+                // Add to bookmarks
+                bookmarkedJobs.push(job)
+                setBookmarked(true)
+            }
+
+            localStorage.setItem('bookmarkedJobs', JSON.stringify(bookmarkedJobs))
+
+            // Notify parent component of bookmark change
+            if (onBookmarkChange) {
+                onBookmarkChange()
+            }
+        } catch (error) {
+            console.error('Failed to toggle bookmark:', error)
+        }
+    }
 
     const getScoreColor = (score: number) => {
         if (score >= 90) return "bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-md"
@@ -54,11 +98,34 @@ export function JobCard({ job }: JobCardProps) {
         }
     }
 
-    const formatDate = (dateString: string) => {
-        if (dateString.toLowerCase().includes('recently')) return 'Recently Posted'
-        if (dateString.toLowerCase().includes('today')) return 'Posted Today'
-        return dateString
-    }
+const formatDate = (dateString: string) => {
+  if (!dateString) return "Recently Posted"
+
+  const parsedDate = new Date(dateString)
+
+  // If date is invalid, fallback
+  if (isNaN(parsedDate.getTime())) return dateString
+
+  const now = new Date()
+  const diffMs = now.getTime() - parsedDate.getTime()
+  const diffMinutes = Math.floor(diffMs / (1000 * 60))
+  const diffHours = Math.floor(diffMinutes / 60)
+  const diffDays = Math.floor(diffHours / 24)
+
+  if (diffMinutes < 1) return "Just now"
+  if (diffMinutes < 60) return `${diffMinutes} min ago`
+  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`
+  if (diffDays === 1) return "Yesterday"
+  if (diffDays < 7) return `${diffDays} days ago`
+
+  // Older than a week → show formatted date
+  return parsedDate.toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  })
+}
+
 
     return (
         <Card className="group hover:shadow-xl transition-all duration-300 border hover:border-primary/30 relative overflow-hidden bg-card">
@@ -96,17 +163,11 @@ export function JobCard({ job }: JobCardProps) {
                     </div>
 
                     <div className="flex flex-col items-end gap-2 shrink-0">
-                        <Badge
-                            variant="outline"
-                            className={`${getScoreColor(job.matchScore)} font-bold px-3 py-1 text-sm`}
-                        >
-                            {job.matchScore}% Match
-                        </Badge>
                         <Button
                             variant="ghost"
                             size="icon"
                             className="h-8 w-8 hover:bg-primary/10"
-                            onClick={() => setBookmarked(!bookmarked)}
+                            onClick={toggleBookmark}
                         >
                             <Bookmark className={`h-4 w-4 ${bookmarked ? 'fill-primary text-primary' : 'text-muted-foreground'}`} />
                         </Button>
@@ -175,15 +236,6 @@ export function JobCard({ job }: JobCardProps) {
                         onClick={() => setExpanded(!expanded)}
                         className="text-muted-foreground hover:text-foreground"
                     >
-                        {/* {expanded ? (
-                            <>
-                                Hide Details <ChevronUp className="ml-1.5 h-4 w-4" />
-                            </>
-                        ) : (
-                            <>
-                                Match Details <ChevronDown className="ml-1.5 h-4 w-4" />
-                            </>
-                        )} */}
                     </Button>
 
                     <div className="flex gap-2">
