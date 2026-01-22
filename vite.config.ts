@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5001',
+        target: 'https://job-hunt-backend-7ftr.onrender.com',
         changeOrigin: true,
       }
     }
