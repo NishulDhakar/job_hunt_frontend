@@ -1,8 +1,5 @@
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
 import { Link } from "react-router-dom" 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
