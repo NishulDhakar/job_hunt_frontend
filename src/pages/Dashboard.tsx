@@ -45,7 +45,7 @@ export function Dashboard() {
     return (
         <div className="container mx-auto p-6 max-w-6xl">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold tracking-tight mb-2">Dashboard</h1>
+                <h1 className="text-3xl font-bold tracking-tight mb-2 font-serif">Dashboard</h1>
                 <p className="text-muted-foreground">
                     Overview of your job search activity
                 </p>

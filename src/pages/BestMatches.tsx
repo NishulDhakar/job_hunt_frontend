@@ -63,7 +63,7 @@ export function BestMatches() {
   if (!hasResume) {
     return (
       <div className="container mx-auto p-6 max-w-4xl">
-        <h1 className="text-2xl font-semibold mb-1">Best Matches</h1>
+        <h1 className="text-2xl font-semibold mb-1 font-serif">Best Matches</h1>
         <p className="text-sm text-muted-foreground mb-8">
           AI-powered job recommendations based on your resume
         </p>

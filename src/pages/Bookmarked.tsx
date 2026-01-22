@@ -64,7 +64,7 @@ export function Bookmarked() {
                             <div className="p-2 bg-primary/10 rounded-lg">
                                 <Bookmark className="h-6 w-6 text-primary" />
                             </div>
-                            <h1 className="text-3xl font-bold tracking-tight">Saved Jobs</h1>
+                            <h1 className="text-3xl font-bold tracking-tight font-serif">Saved Jobs</h1>
                         </div>
                         <p className="text-muted-foreground">
                             {filteredJobs.length} {filteredJobs.length === 1 ? 'job' : 'jobs'} bookmarked

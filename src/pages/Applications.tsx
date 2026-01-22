@@ -50,7 +50,7 @@ export function Applications() {
 
     return (
         <div className="container mx-auto p-6 max-w-5xl">
-            <h1 className="text-3xl font-bold tracking-tight mb-2">My Applications</h1>
+            <h1 className="text-3xl font-bold tracking-tight mb-2 font-serif">My Applications</h1>
             <p className="text-muted-foreground mb-8">
                 Track and manage your {apps.length} job applications
             </p>

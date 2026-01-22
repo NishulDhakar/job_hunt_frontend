@@ -71,7 +71,7 @@ const handleScoreJobs = async () => {
 
     return (
         <div className="container mx-auto p-6 max-w-6xl">
-            <h1 className="text-3xl font-bold tracking-tight mb-2">Profile & Resume</h1>
+            <h1 className="text-3xl font-bold tracking-tight mb-2 font-serif">Profile & Resume</h1>
             <p className="text-muted-foreground mb-8">
                 Upload your resume to get AI-powered job matching scores
             </p>

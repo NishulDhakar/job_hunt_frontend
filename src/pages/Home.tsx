@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
-import { Link } from "react-router-dom" // if you use react-router
-
+import { Link } from "react-router-dom" 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -34,37 +33,7 @@ export default function Home() {
               Start Creating
             </Link>
 
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
-
-
-          {mobileMenuOpen && (
-            <div className="md:hidden mt-4 px-4">
-              <div className="rounded-2xl bg-black/70 backdrop-blur-lg p-5 space-y-4 text-sm">
-                {["Home", "Product", "About", "Blog", "Contact"].map((item) => (
-                  <Link
-                    key={item}
-                    to="/"
-                    className="block text-white/90 hover:text-white"
-                  >
-                    {item}
-                  </Link>
-                ))}
-                <Link
-                  to="/dashboard"
-                  className="inline-flex px-4 py-2 mt-2 text-white bg-white/10 border border-white/30 rounded-full"
-                >
-                  Start Tracking
-                </Link>
-              </div>
-            </div>
-          )}
         </header>
 
 

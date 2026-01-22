@@ -70,7 +70,7 @@ export function AIChat() {
     return (
         <div className="container mx-auto p-6 max-w-4xl h-[calc(100vh-12rem)]">
             <div className="mb-6">
-                <h1 className="text-3xl font-bold tracking-tight mb-2">AI Career Advisor</h1>
+                <h1 className="text-3xl font-bold tracking-tight mb-2 font-serif">AI Career Advisor</h1>
                 <p className="text-muted-foreground">
                     Get personalized career guidance and job search strategies
                 </p>
