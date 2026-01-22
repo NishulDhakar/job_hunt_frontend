@@ -10,7 +10,6 @@ export function Sidebar({ className }: { className?: string }) {
         { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/jobs', label: 'Job Feed', icon: Briefcase },
         { href: '/bookmarked', label: 'Saved Jobs', icon: Bookmark },
-        { href: '/matches', label: 'Best Matches', icon: Star },
         { href: '/applications', label: 'Applications', icon: Briefcase },
         { href: '/chat', label: 'AI Assistant', icon: MessageSquare },
     ]
