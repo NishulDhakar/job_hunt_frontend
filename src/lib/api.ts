@@ -51,11 +51,14 @@ const inferSkills = (title: string, description: string): string[] => {
 };
 
 export const api = {
-    getJobs: async (): Promise<Job[]> => {
+    getJobs: async (page: number = 1, limit: number = 20): Promise<Job[]> => {
         try {
-            const res = await apiClient.get("/api/jobs");
-            const rawJobs = res.data?.data ?? res.data ?? [];
 
+            const res = await apiClient.get("/api/jobs", {
+                params: { page, limit }
+            });
+
+            const rawJobs = res.data?.data ?? res.data ?? [];
             return rawJobs.map((job: any) => ({
                 id: job.id || job._id,
                 title: job.title,
@@ -63,7 +66,7 @@ export const api = {
                 location: job.location,
                 type: job.jobType || "Full-time",
                 description: job.description,
-                datePosted: job.postedAt || "Recently",
+                datePosted: job.postedAt || job.datePosted || "Recently",
                 matchScore: job.matchScore || Math.floor(Math.random() * 30) + 70,
                 skills:
                     job.skills && job.skills.length > 0
