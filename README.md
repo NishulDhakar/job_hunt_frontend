@@ -7,7 +7,7 @@ React UI for the AI Job Tracker application.
 - Resume upload UI
 - Match score display
 - Best matches section
-- Apply popup flow
+- Saved Jobs section
 - Applications dashboard
 - AI chat assistant
 
@@ -27,7 +27,7 @@ npm run dev
 ## Create .env:
 
 ```bash
-VITE_API_URL=https://job-hunt-backend-7ftr.onrender.com
+VITE_API_URL=
 ```
 
 The frontend only handles UI and API calls.
