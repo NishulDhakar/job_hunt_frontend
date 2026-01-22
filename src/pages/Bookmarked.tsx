@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Search, Bookmark, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Alert, AlertDescription } from '@/components/ui/alert'
+
 
 export function Bookmarked() {
     const [bookmarkedJobs, setBookmarkedJobs] = useState<Job[]>([])

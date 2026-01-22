@@ -3,7 +3,7 @@ import { api } from '@/lib/api'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
-import { Bot, Send, User, Sparkles } from 'lucide-react'
+import { Bot, Send, User } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 interface Message {

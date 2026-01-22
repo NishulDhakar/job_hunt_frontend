@@ -63,13 +63,7 @@ export function JobCard({ job, onBookmarkChange }: JobCardProps) {
         }
     }
 
-    const getScoreColor = (score: number) => {
-        if (score >= 90) return "bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-md"
-        if (score >= 80) return "bg-green-100 text-green-800 border-green-300 dark:bg-green-900/30 dark:text-green-400"
-        if (score >= 70) return "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/30 dark:text-blue-400"
-        if (score >= 60) return "bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/30 dark:text-yellow-400"
-        return "bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-800 dark:text-gray-400"
-    }
+
 
     const handleApply = async () => {
         await api.applyJob(job, 'Applied')
@@ -98,33 +92,33 @@ export function JobCard({ job, onBookmarkChange }: JobCardProps) {
         }
     }
 
-const formatDate = (dateString: string) => {
-  if (!dateString) return "Recently Posted"
+    const formatDate = (dateString: string) => {
+        if (!dateString) return "Recently Posted"
 
-  const parsedDate = new Date(dateString)
+        const parsedDate = new Date(dateString)
 
-  // If date is invalid, fallback
-  if (isNaN(parsedDate.getTime())) return dateString
+        // If date is invalid, fallback
+        if (isNaN(parsedDate.getTime())) return dateString
 
-  const now = new Date()
-  const diffMs = now.getTime() - parsedDate.getTime()
-  const diffMinutes = Math.floor(diffMs / (1000 * 60))
-  const diffHours = Math.floor(diffMinutes / 60)
-  const diffDays = Math.floor(diffHours / 24)
+        const now = new Date()
+        const diffMs = now.getTime() - parsedDate.getTime()
+        const diffMinutes = Math.floor(diffMs / (1000 * 60))
+        const diffHours = Math.floor(diffMinutes / 60)
+        const diffDays = Math.floor(diffHours / 24)
 
-  if (diffMinutes < 1) return "Just now"
-  if (diffMinutes < 60) return `${diffMinutes} min ago`
-  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`
-  if (diffDays === 1) return "Yesterday"
-  if (diffDays < 7) return `${diffDays} days ago`
+        if (diffMinutes < 1) return "Just now"
+        if (diffMinutes < 60) return `${diffMinutes} min ago`
+        if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`
+        if (diffDays === 1) return "Yesterday"
+        if (diffDays < 7) return `${diffDays} days ago`
 
-  // Older than a week → show formatted date
-  return parsedDate.toLocaleDateString("en-IN", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  })
-}
+        // Older than a week → show formatted date
+        return parsedDate.toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+        })
+    }
 
 
     return (
