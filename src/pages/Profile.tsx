@@ -41,7 +41,6 @@ const handleScoreJobs = async () => {
   setError(null);
 
   try {
-    // Make sure jobs are loaded (optional, but keeps flow correct)
     const jobs = await api.getJobs();
 
     if (!jobs || jobs.length === 0) {
@@ -176,7 +175,6 @@ const handleScoreJobs = async () => {
                                     </>
                                 ) : (
                                     <>
-                                        {/* <Sparkles className="w-4 h-4 mr-2" /> */}
                                         Score Jobs
                                     </>
                                 )}

@@ -79,9 +79,6 @@ export function AIChat() {
             <Card className="h-[calc(100%-5rem)] flex flex-col shadow-lg">
                 <CardHeader className="border-b bg-gradient-to-r from-primary/5 to-primary/10">
                     <CardTitle className="flex items-center gap-2 text-lg">
-                        {/* <div className="p-2 bg-primary/10 rounded-full">
-                            <Sparkles className="w-5 h-5 text-primary" />
-                        </div> */}
                         AI-Powered Career Assistant
                     </CardTitle>
                 </CardHeader>

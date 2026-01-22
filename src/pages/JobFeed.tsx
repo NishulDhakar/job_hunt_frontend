@@ -33,16 +33,16 @@ export function JobFeed() {
 
         try {
             const data = await api.getJobs()
-            // Sort by Date (Newest First)
+
             const sortedData = data.sort((a, b) => {
                 let timeA = new Date(a.datePosted).getTime()
                 let timeB = new Date(b.datePosted).getTime()
 
-                // Treat invalid dates (e.g. 'Recently') as NOW so they show up first
+
                 if (isNaN(timeA)) timeA = Date.now()
                 if (isNaN(timeB)) timeB = Date.now()
 
-                return timeB - timeA // Descending (Newest first)
+                return timeB - timeA 
             })
 
             setJobs(sortedData)
@@ -58,7 +58,7 @@ export function JobFeed() {
     const filterJobs = () => {
         let filtered = [...jobs]
 
-        // Search filter
+
         if (searchTerm) {
             filtered = filtered.filter(job =>
                 job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -67,7 +67,7 @@ export function JobFeed() {
             )
         }
 
-        // Type filter
+
         if (typeFilter !== 'all') {
             filtered = filtered.filter(job => job.type.toLowerCase().includes(typeFilter.toLowerCase()))
         }

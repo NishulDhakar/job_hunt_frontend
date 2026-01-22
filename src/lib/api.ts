@@ -33,7 +33,6 @@ export interface Application {
     timestamp: string;
 }
 
-// Helper to deduce skills from job title
 const inferSkills = (title: string, description: string): string[] => {
     const skills = new Set<string>();
     const text = (title + " " + description).toLowerCase();

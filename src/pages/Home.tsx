@@ -7,7 +7,6 @@ export default function Home() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
-      {/* Background */}
       <div className="absolute inset-0">
         <img
           src="/background.png"
@@ -16,18 +15,16 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
       </div>
-
-      {/* Content */}
       <div className="relative z-10 h-full flex flex-col text-white">
-        {/* Header */}
+
         <header className="w-full px-10 py-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
-            {/* Logo */}
+
             <Link to="/" className="text-2xl font-serif tracking-tight">
               Job Hunting
             </Link>
 
-            {/* CTA */}
+
             <Link
               to="/dashboard"
               className="hidden md:inline-flex px-5 py-2.5 text-sm
@@ -37,7 +34,7 @@ export default function Home() {
               Start Creating
             </Link>
 
-            {/* Mobile Button */}
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden text-white"
@@ -46,7 +43,7 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Mobile Menu */}
+
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 px-4">
               <div className="rounded-2xl bg-black/70 backdrop-blur-lg p-5 space-y-4 text-sm">
@@ -70,7 +67,7 @@ export default function Home() {
           )}
         </header>
 
-        {/* Hero */}
+
         <main className="flex-1 flex justify-center mt-16 lg:mt-20">
           <div className="text-center max-w-4xl space-y-8">
             <h1
