@@ -31,38 +31,44 @@ export function Profile() {
         }
     }
 
-    const handleScoreJobs = async () => {
-        if (!resumeUploaded) {
-            setError('Please upload a resume first!')
-            return
-        }
+const handleScoreJobs = async () => {
+  if (!resumeUploaded) {
+    setError("Please upload a resume first!");
+    return;
+  }
 
-        setScoring(true)
-        setError(null)
-        try {
-            // First, make sure we have jobs loaded by fetching them
-            await api.getJobs()
+  setScoring(true);
+  setError(null);
 
-            // Then call backend to score jobs
-            const response = await fetch('/api/score-jobs', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: 'guest' })
-            })
-            const data = await response.json()
+  try {
+    // Make sure jobs are loaded (optional, but keeps flow correct)
+    const jobs = await api.getJobs();
 
-            if (data.success && data.data) {
-                setScoredJobs(data.data)
-            } else {
-                setError(data.message || 'Failed to score jobs. Please try again.')
-            }
-        } catch (error: any) {
-            console.error('Scoring failed:', error)
-            setError('Failed to score jobs. Please make sure you\'ve browsed the job feed first.')
-        } finally {
-            setScoring(false)
-        }
+    if (!jobs || jobs.length === 0) {
+      setError("Please browse jobs first before scoring.");
+      setScoring(false);
+      return;
     }
+
+    const data = await api.scoreJobs({
+      userId: "guest",
+      jobs,
+    });
+
+    if (data.success && data.data) {
+      setScoredJobs(data.data);
+    } else {
+      setError(data.message || "Failed to score jobs.");
+    }
+
+  } catch (error: any) {
+    console.error("Scoring failed:", error);
+    setError("Failed to score jobs. Please try again.");
+  } finally {
+    setScoring(false);
+  }
+};
+
 
     return (
         <div className="container mx-auto p-6 max-w-6xl">
