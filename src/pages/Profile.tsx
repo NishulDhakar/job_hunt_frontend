@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { api, type Job } from '@/lib/api'
+import { getUserId } from '@/lib/user'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -31,42 +32,42 @@ export function Profile() {
         }
     }
 
-const handleScoreJobs = async () => {
-  if (!resumeUploaded) {
-    setError("Please upload a resume first!");
-    return;
-  }
+    const handleScoreJobs = async () => {
+        if (!resumeUploaded) {
+            setError("Please upload a resume first!");
+            return;
+        }
 
-  setScoring(true);
-  setError(null);
+        setScoring(true);
+        setError(null);
 
-  try {
-    const jobs = await api.getJobs();
+        try {
+            const jobs = await api.getJobs();
 
-    if (!jobs || jobs.length === 0) {
-      setError("Please browse jobs first before scoring.");
-      setScoring(false);
-      return;
-    }
+            if (!jobs || jobs.length === 0) {
+                setError("Please browse jobs first before scoring.");
+                setScoring(false);
+                return;
+            }
 
-    const data = await api.scoreJobs({
-      userId: "guest",
-      jobs,
-    });
+            const data = await api.scoreJobs({
+                userId: getUserId(),
+                jobs,
+            });
 
-    if (data.success && data.data) {
-      setScoredJobs(data.data);
-    } else {
-      setError(data.message || "Failed to score jobs.");
-    }
+            if (data.success && data.data) {
+                setScoredJobs(data.data);
+            } else {
+                setError(data.message || "Failed to score jobs.");
+            }
 
-  } catch (error: any) {
-    console.error("Scoring failed:", error);
-    setError("Failed to score jobs. Please try again.");
-  } finally {
-    setScoring(false);
-  }
-};
+        } catch (error: any) {
+            console.error("Scoring failed:", error);
+            setError("Failed to score jobs. Please try again.");
+        } finally {
+            setScoring(false);
+        }
+    };
 
 
     return (

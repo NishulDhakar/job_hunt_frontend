@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { type Job } from '@/lib/api'
+import { getUserId } from '@/lib/user'
 import { JobCard } from '@/components/JobCard'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Upload, Sparkles, ArrowRight } from 'lucide-react'
@@ -19,7 +20,7 @@ export function BestMatches() {
   const loadMatches = async () => {
     setLoading(true)
     try {
-      const response = await fetch('/api/scored-jobs/guest')
+      const response = await fetch(`/api/scored-jobs/${getUserId()}`)
       const data = await response.json()
 
       if (response.ok && data.success) {

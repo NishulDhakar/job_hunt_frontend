@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUserId } from "./user";
 
 export const API_BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -89,7 +90,7 @@ export const api = {
 
     getApplications: async (): Promise<Application[]> => {
         try {
-            const res = await apiClient.get("/api/applications?userId=guest");
+            const res = await apiClient.get(`/api/applications?userId=${getUserId()}`);
             const rawApps = res.data?.data ?? res.data ?? [];
 
             return rawApps.map((app: any) => ({
@@ -109,7 +110,7 @@ export const api = {
     uploadResume: async (file: File) => {
         const formData = new FormData();
         formData.append("resume", file);
-        formData.append("userId", "guest");
+        formData.append("userId", getUserId());
 
         const res = await apiClient.post("/api/upload-resume", formData, {
             headers: { "Content-Type": "multipart/form-data" },
@@ -120,7 +121,7 @@ export const api = {
 
     applyJob: async (job: Job, status: string = "Applied") => {
         const res = await apiClient.post("/api/apply-job", {
-            userId: "guest",
+            userId: getUserId(),
             jobId: job.id,
             status,
             userChoice: "Yes",
@@ -135,7 +136,7 @@ export const api = {
         try {
             const res = await apiClient.post("/api/chat", {
                 message,
-                userId: "guest",
+                userId: getUserId(),
             });
             return res.data.data;
         } catch {
