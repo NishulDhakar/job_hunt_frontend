@@ -29,7 +29,7 @@ export default function Home() {
 
             {/* CTA */}
             <Link
-              to="/"
+              to="/dashboard"
               className="hidden md:inline-flex px-5 py-2.5 text-sm
               text-white bg-white/10 backdrop-blur-md border border-white/30 rounded-full
               hover:bg-white/20 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
