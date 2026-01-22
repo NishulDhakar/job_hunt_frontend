@@ -2,6 +2,9 @@
 
 React UI for the AI Job Tracker application.
 
+![815shots_so](https://github.com/user-attachments/assets/c58de75e-ec5f-4c28-8de8-5666e6b7a104)
+
+
 ## Features
 - Job feed with filters
 - Resume upload UI
