@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { LayoutDashboard, Briefcase, Star, MessageSquare, Bookmark } from 'lucide-react'
+import { LayoutDashboard, Briefcase, MessageSquare, Bookmark } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
